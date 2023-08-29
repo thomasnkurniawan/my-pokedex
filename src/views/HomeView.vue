@@ -5,15 +5,15 @@ import dropdown from '@/components/DropdownComponent.vue'
 
 <template>
   <div class="w-full">
-    <div class="flex justify-between pt-5 align-middle items-center">
-      <h1 class="text-3xl m-5">Pokemon List</h1>
+    <div class="flex flex-col lg:flex-row justify-between pt-5 align-middle items-center">
+      <h1 class="text-3xl m-5">My Pokedex</h1>
       <dropdown
         :options="pokemonTypes"
         placeholder="Filter Pokemon Types"
         @option-selected="handleOptionSelected"
       />
     </div>
-    <div class="w-full grid grid-cols-2 sm:grid-cols-4">
+    <div class="w-full grid grid-cols-1 sm:grid-cols-4">
       <card-list :items="pokemons" />
     </div>
   </div>

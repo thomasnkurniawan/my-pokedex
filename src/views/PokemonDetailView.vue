@@ -112,10 +112,6 @@ export default {
       try {
         const route = useRoute()
         const pokemonDataAPI = await getPokemonById(route.params.id)
-        console.debug(
-          '🚀 ~ file: PokemonDetailView.vue:390 ~ fetchPokemons ~ pokemonDataAPI:',
-          pokemonDataAPI
-        )
 
         this.pokemons = pokemonDataAPI[0]
 

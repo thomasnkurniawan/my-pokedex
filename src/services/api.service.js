@@ -12,7 +12,7 @@ export const fetchPokemonData = async (page = 1) => {
         const speciesData = speciesResponse.data
 
         const abilities = speciesData.abilities.map((ability) => ({
-          name: ability.ability.name,
+          name: ability.ability.name.split('-').join(' '),
           slot: ability.slot
         }))
 
@@ -60,7 +60,6 @@ export const fetchPokemonbyTypesData = async (typeName, page) => {
     const response = await axiosInstance.get(`/type/${typeName}?offset=${offset}&limit=20`)
     if (response.status === 200) {
       const pokemonList = response.data.pokemon.map((pokemon) => ({ ...pokemon.pokemon }))
-      console.debug(pokemonList)
 
       const pokemonDetails = await Promise.all(
         pokemonList.map(async (pokemon) => {
@@ -68,7 +67,7 @@ export const fetchPokemonbyTypesData = async (typeName, page) => {
           const speciesData = speciesResponse.data
 
           const abilities = speciesData.abilities.map((ability) => ({
-            name: ability.ability.name,
+            name: ability.ability.name.split('-').join(' '),
             slot: ability.slot
           }))
 
