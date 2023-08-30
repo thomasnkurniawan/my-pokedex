@@ -25,7 +25,8 @@ export const fetchPokemonData = async (page = 1) => {
           name: pokemon.name,
           abilities,
           types,
-          imageUrl
+          imageUrl,
+          isFavorite: false
         }
       })
     )
@@ -80,6 +81,7 @@ export const fetchPokemonbyTypesData = async (typeName, page) => {
             name: pokemon.name,
             abilities,
             types,
+            isFavorite: false,
             imageUrl
           }
         })
@@ -182,7 +184,8 @@ export const getPokemonById = async (id) => {
           height,
           abilities,
           pokemonTypes,
-          species
+          species,
+          isFavorite: false
         }
       })
       return mappedPokemonData
