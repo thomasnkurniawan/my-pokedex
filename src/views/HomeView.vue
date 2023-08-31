@@ -174,11 +174,14 @@ export default {
       }
     },
     async fetchPokemonsByType() {
+      this.pokemons = []
+
       if (this.loading) return
 
       this.loading = true
 
       try {
+        this.page = 0
         const pokeData = await fetchPokemonbyTypesData(this.selectedOption)
         const mappedWithFavorite = pokeData.map((item) => {
           const currentFavStatus = this.getFavoriteStatus(item.id)
@@ -196,9 +199,11 @@ export default {
       }
     },
     handleScroll() {
-      const bottomOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight
-      if (bottomOfPage) {
-        this.fetchPokemons()
+      if (!this.selectedOption) {
+        const bottomOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight
+        if (bottomOfPage) {
+          this.fetchPokemons()
+        }
       }
     },
     async getPokemonType() {

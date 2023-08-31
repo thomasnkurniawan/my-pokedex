@@ -22,7 +22,7 @@ export const fetchPokemonData = async (page = 1) => {
 
         return {
           id: speciesData.id,
-          name: pokemon.name,
+          name: pokemon.name.split('-').join(' '),
           abilities,
           types,
           imageUrl,
@@ -54,11 +54,9 @@ export const fetchPokemonTypesData = async () => {
   }
 }
 
-export const fetchPokemonbyTypesData = async (typeName, page) => {
+export const fetchPokemonbyTypesData = async (typeName) => {
   try {
-    const offset = (page - 1) * 20
-
-    const response = await axiosInstance.get(`/type/${typeName}?offset=${offset}&limit=20`)
+    const response = await axiosInstance.get(`/type/${typeName}`)
     if (response.status === 200) {
       const pokemonList = response.data.pokemon.map((pokemon) => ({ ...pokemon.pokemon }))
 
@@ -78,7 +76,7 @@ export const fetchPokemonbyTypesData = async (typeName, page) => {
 
           return {
             id: speciesData.id,
-            name: pokemon.name,
+            name: pokemon.name.split('-').join(' '),
             abilities,
             types,
             isFavorite: false,
