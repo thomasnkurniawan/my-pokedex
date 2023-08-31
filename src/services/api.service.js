@@ -3,7 +3,7 @@ import axiosInstance from '@/plugins/axios'
 
 export const fetchPokemonData = async (page = 1) => {
   try {
-    const response = await axiosInstance.get(`pokemon/?page=${page}`)
+    const response = await axiosInstance.get(`pokemon/?offset=${page}&limit=20`)
     const pokemons = response.data.results
 
     const pokemonDetails = await Promise.all(
